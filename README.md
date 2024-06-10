@@ -1,6 +1,6 @@
 # tGAN
 
-This repository hosts the training and evaluation code for "tGAN: Enhanced Cell Tracking Using A GAN-based Super-Resolution Video-to-Video Time-Lapse Microscopy Generative Model." This model is designed to significantly enhance the quality and diversity of synthetic annotated time-lapse microscopy data. Our model features a dual-resolution architecture that adeptly synthesizes both low and high-resolution images, uniquely capturing the intricate dynamics of cellular processes essential for accurate tracking. ![Screenshot](Figure1.png)
+This repository hosts the training and evaluation code for "tGAN: Enhanced Cell Tracking Using A GAN-based Super-Resolution Video-to-Video Time-Lapse Microscopy Generative Model." This model is designed to significantly enhance the quality and diversity of synthetic annotated time-lapse microscopy data. Our model features a dual-resolution architecture that adeptly synthesizes both low and high-resolution video frames, uniquely capturing the intricate dynamics of cellular processes essential for accurate tracking. ![Screenshot](Figure1.png)
 
 ### Datasets
 We employed two annotated time-lapse microscopy datasets in our experiments, including DeepSea and Cell Tracking Challenge samples. Access the datasets here: [tGAN_datasets](https://drive.google.com/drive/folders/1t-5bP0dudbwrtWCj1Pe4UCLxFgovFdOJ?usp=sharing)
