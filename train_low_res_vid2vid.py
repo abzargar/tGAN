@@ -72,7 +72,7 @@ def train(args, image_size=[256, 384], image_means=[0.5], image_stds=[0.5]):
     optimizer_D = torch.optim.RMSprop(D.parameters(), lr=args.lr, weight_decay=1e-8, momentum=0.9)
 
     STEPS_PER_EPOCH = len(train_iterator)
-    TOTAL_STEPS = args.max_epoch * STEPS_PER_EPOCH * 70
+    TOTAL_STEPS = args.max_epoch * STEPS_PER_EPOCH * args.max_sequence_length
 
     # Define the learning rate schedulers
     MAX_LRS_G = [p['lr'] for p in optimizer_G.param_groups]
@@ -235,7 +235,7 @@ def train(args, image_size=[256, 384], image_means=[0.5], image_stds=[0.5]):
         )
         logging.info("[Epoch %d/%d] [D loss: %f] [G loss: %f]"% (epoch, args.max_epoch, d_loss_total, g_loss_total))
 
-        if epoch % 10 == 0:
+        if epoch % args.save_ckpt_interval == 0:
             torch.save(Gen.state_dict(), os.path.join(args.output_dir, 'low_res_Gen.pth'))
             torch.save(D.state_dict(), os.path.join(args.output_dir, 'low_res_D.pth'))
             torch.save(FlowNet.state_dict(), os.path.join(args.output_dir, 'low_res_FlowNet.pth'))
@@ -255,6 +255,8 @@ if __name__ == "__main__":
     ap.add_argument("--max_sequence_length", default=10, type=int,help="max training clip length")
     ap.add_argument("--n_frames_total", default=20, type=int, help="total number of frames to load from each clip")
     ap.add_argument("--num_epochs_temporal_step", default=50, type=int,help="how often to increment the number of training frames in each clip")
+    ap.add_argument('--save_ckpt_interval', type=int, default=10, help="Specify how often (in epochs) to save the best checkpoint")
+
     # Parse the command-line arguments
     args = ap.parse_args()
 

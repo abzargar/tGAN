@@ -102,7 +102,7 @@ class BasicDataset():
         return A_img,B_img
 
     def __len__(self):
-        return len(self.A_paths)
+        return len(self.seg_map_seqs_dir)
 
 
 
